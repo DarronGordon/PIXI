@@ -3,9 +3,10 @@ import * as PIXI from "pixi.js";
 import Victor from "victor";
 import Player from "./player";
 import Zombie from "./zombie";
+import Spawner from "./spawner";
 //import Matter from "matter-js";
 
-let canvasSize = 256;
+let canvasSize = 512;
 const canvas = document.getElementById("mycanvas");
 const app = new PIXI.Application({
 view: canvas,
@@ -15,11 +16,11 @@ backgroundColor: 0x5c812f,
 });
 
 let player = new Player({app});
-let zombie = new Zombie({app, player});
+let zombieSpawner = new Spawner({create:() => new Zombie({app, player})});
 
 app.ticker.add((delta) =>{
 
 player.update();
-zombie.update();
+zombieSpawner.spawns.forEach(Zombie => Zombie.update());
 
 });

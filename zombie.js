@@ -9,7 +9,7 @@ export default class Zombie{
         this.player = player;
 
         let enemyRadius =16;
-        this.speed = 2;
+        this.speed = 1;
         
         this.zombie = new PIXI.Graphics();
         let r = this.RandomSpawnPoint();
